@@ -1,20 +1,11 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>卓见</title>
+    <title>发布</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <!--    &lt;!&ndash; 最新版本的 Bootstrap 核心 CSS 文件 &ndash;&gt;-->
-    <!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"-->
-    <!--          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">-->
-    <!--    &lt;!&ndash; 可选的 Bootstrap 主题文件（一般不用引入） &ndash;&gt;-->
-    <!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css"-->
-    <!--          integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">-->
-    <!--    &lt;!&ndash; 最新的 Bootstrap 核心 JavaScript 文件 &ndash;&gt;-->
-    <!--    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"-->
-    <!--            integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"-->
-    <!--            crossorigin="anonymous"></script>-->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/zhuojiandemo.css">
     <script src="/js/bootstrap.js"></script>
 
 </head>
@@ -56,5 +47,45 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+<div class="container-fluid main">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+            <h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>发起</h2>
+            <hr>
+
+            <form action="">
+                <div class="form-group">
+                    <label for="title">问题标题（关键词）</label>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="输入问题标题">
+                </div>
+                <div class="form-group">
+                    <label for="title">问题补充（必填，请参照右侧提示）：</label>
+                    <textarea name="description" id="description" class="form-control" cols="30" rows="10"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="title">添加标签</label>
+                    <input type="text" class="form-control" id="tag" name="tag" placeholder="输入标签，以，分隔">
+                </div>
+                <button type="submit" class="btn btn-success btn-publish">发布</button>
+            </form>
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <h3>常用链接</h3>
+            Elastic 官方网站
+            Elastic Github
+            Elasticsearch 权威指南中文版(2.x)
+            Kibana 中文手册(6.0)
+            Elasticsearch-PHP 中文手册(6.0)
+            Elastic 官方技术博客
+            Elastic 搜索开发实战
+            Elastic 社区分享回放
+            Elastic 社区电台节目
+            Elastic 社区百格活动
+            Elastic 社区 Meetup
+            Elastic 社区用户大会
+            Elastic 社区 IT 大咖说
+        </div>
+    </div>
+</div>
 </body>
 </html>
