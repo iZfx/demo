@@ -75,7 +75,7 @@
                 <div class="media-body">
                     <h4 class="media-heading" th:text="${question.title}"></h4>
                     <spqn th:text="${question.description}"></spqn><br>
-                    <span class="text-desc">• [[${question.commentCount}]] 个回复 • [[${question.viewCount}]] 次浏览 • [[${#dates.format(question.gmtCreate, 'dd MMMM yyyy')}]]</span>
+                    <span class="text-desc">• [[${question.commentCount}]] 个回复 • [[${question.viewCount}]] 次浏览 • [[${#dates.format(question.gmtCreate, 'yyyy-MM-dd HH:mm')}]]</span>
                 </div>
             </div>
         </div>
