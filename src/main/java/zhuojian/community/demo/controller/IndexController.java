@@ -7,6 +7,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import zhuojian.community.demo.dto.PaginationDTO;
 import zhuojian.community.demo.dto.QuestionDTO;
 import zhuojian.community.demo.mapper.QuestionMapper;
 import zhuojian.community.demo.mapper.UserMapper;
@@ -30,7 +31,9 @@ public class IndexController {
 
     @GetMapping("/")
     public String index(HttpServletRequest request,
-                        Model model) {
+                        Model model,
+                        @RequestParam(name = "page", defaultValue = "1") Integer page,
+                        @RequestParam(name = "size", defaultValue = "5") Integer size) {
         Cookie[] cookies = request.getCookies();
         if (!ObjectUtils.isEmpty(cookies)) {
             for (Cookie cookie : cookies) {
@@ -46,8 +49,8 @@ public class IndexController {
             }
         }
 
-        List<QuestionDTO> questionList = questionService.list();
-        model.addAttribute("questions", questionList);
+        PaginationDTO pagination = questionService.list(page, size);
+        model.addAttribute("pagination", pagination);
         return "index";
     }
 }
