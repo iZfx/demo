@@ -31,6 +31,10 @@ public class QuestionService {
         Integer totalCount = questionMapper.count();
         paginationDTO.setPagination(totalCount, page, size);
 
+        if (totalCount == 0) {
+            size = 0;
+        }
+
         if (page < 1) {
             page = 1;
         }
@@ -59,6 +63,10 @@ public class QuestionService {
         Integer totalCount = questionMapper.countByUserId(userId);
         paginationDTO.setPagination(totalCount, page, size);
 
+        if (totalCount == 0) {
+            size = 0;
+        }
+
         if (page < 1) {
             page = 1;
         }
@@ -83,9 +91,9 @@ public class QuestionService {
     }
 
     public QuestionDTO getById(long id) {
-        Question question=questionMapper.getById(id);
-        QuestionDTO questionDTO=new QuestionDTO();
-        BeanUtils.copyProperties(question,questionDTO);
+        Question question = questionMapper.getById(id);
+        QuestionDTO questionDTO = new QuestionDTO();
+        BeanUtils.copyProperties(question, questionDTO);
 
         User user = userMapper.findById(question.getCreatorId());
         questionDTO.setUser(user);

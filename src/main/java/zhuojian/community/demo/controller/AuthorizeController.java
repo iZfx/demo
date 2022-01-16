@@ -10,6 +10,7 @@ import zhuojian.community.demo.dto.GithubUserDTO;
 import zhuojian.community.demo.mapper.UserMapper;
 import zhuojian.community.demo.model.User;
 import zhuojian.community.demo.provider.GithubProvider;
+import zhuojian.community.demo.service.UserService;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +25,9 @@ public class AuthorizeController {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private UserService userService;
 
     @Value("${github.client.id}")
     private String clientId;
@@ -57,6 +61,7 @@ public class AuthorizeController {
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtCreate());
             user.setAvatarUrl(githubUserDTO.getAvatar_url());
+            userService.createOrUpdate(user);
             userMapper.insert(user);
             // 把token写入cookie
             response.addCookie(new Cookie("token", token));
@@ -67,5 +72,15 @@ public class AuthorizeController {
             // 登录失败，重新登录
             return "redirect:/";
         }
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request,
+                         HttpServletResponse response){
+        request.getSession().removeAttribute("user");
+        Cookie cookie=new Cookie("token",null);
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+        return "redirect:/";
     }
 }
