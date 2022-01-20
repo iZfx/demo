@@ -16,3 +16,8 @@
 [OkHttp](https://square.github.io/okhttp/)
 [Visual Paradigm](https://www.visual-paradigm.com)
 [Flyway Migration](https://flywaydb.org/documentation/getstarted/firststeps/maven)
+
+'''bash
+mvn flyway:migrate
+mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
+'''
