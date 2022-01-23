@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import zhuojian.community.demo.dto.PaginationDTO;
 import zhuojian.community.demo.dto.QuestionDTO;
+import zhuojian.community.demo.exception.CustomizeException;
 import zhuojian.community.demo.mapper.QuestionMapper;
 import zhuojian.community.demo.mapper.UserMapper;
 import zhuojian.community.demo.model.Question;
@@ -92,6 +93,9 @@ public class QuestionService {
 
     public QuestionDTO getById(long id) {
         Question question = questionMapper.getById(id);
+        if (question == null) {
+            throw new CustomizeException("该页面不存在，要不换个试试？");
+        }
         QuestionDTO questionDTO = new QuestionDTO();
         BeanUtils.copyProperties(question, questionDTO);
 
@@ -108,6 +112,9 @@ public class QuestionService {
         } else {
             question.setGmtModified(System.currentTimeMillis());
             questionMapper.update(question);
+//            if (questionMapper.update()==null){
+//                throw  new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+//            }
         }
     }
 }
